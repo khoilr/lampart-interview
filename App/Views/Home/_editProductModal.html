@@ -1,0 +1,75 @@
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/product/update" method="post" enctype="multipart/form-data">
+
+                <input type="hidden" name="id" id="edit-id" value="">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProductModalLabel">Edit product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    {# Input name #}
+                    <div class="form-group row">
+                        <label for="edit-name" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input required name="name" type="text" class="form-control" id="edit-name"
+                                placeholder="iPhone 13 Pro Max..." />
+                        </div>
+                    </div>
+
+                    {# Price name #}
+                    <div class="form-group row">
+                        <label for="edit-price" class="col-sm-2 col-form-label">Price($)</label>
+                        <div class="col-sm-10">
+                            <input required name="price" type="number" class="form-control" id="edit-price"
+                                placeholder="1000..." />
+                        </div>
+                    </div>
+
+                    {# Input category #}
+                    <div class="form-group row">
+                        <label for="edit-category" class="col-sm-2 col-form-label">Category</label>
+                        <div class="col-sm-10">
+                            <input required name="category" type="text" list="categories"
+                                class="custom-select form-control" id="edit-category"
+                                placeholder="Select or type new category...">
+
+                            {# todo: query from database #}
+                            <datalist id="categories">
+                                {% for category in categories %}
+                                <option value="{{ category.name }}">
+                                    {% endfor %}
+                            </datalist>
+                            </select>
+                        </div>
+                    </div>
+
+                    {# Input image #}
+                    <div class="form-group row">
+                        <img src="" alt="" id="edit-image" class="w-100 rounded">
+                    </div>
+
+                </div>
+
+                <div class="modal-footer d-flex justify-content-between">
+                    <div>
+                        <button class="btn btn-danger" id="delete">Delete</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Update product
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

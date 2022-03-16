@@ -1,0 +1,73 @@
+<!-- add product modal -->
+<div class="modal fade" id="modal-new" tabindex="-1" aria-labelledby="New product" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/product/add" method="post" enctype="multipart/form-data">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-new-label">Add a new product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    {# Input name #}
+                    <div class="form-group row">
+                        <label for="input-name" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input required name="name" type="text" class="form-control" id="input-name"
+                                placeholder="iPhone 13 Pro Max..." />
+                        </div>
+                    </div>
+
+                    {# Price name #}
+                    <div class="form-group row">
+                        <label for="input-price" class="col-sm-2 col-form-label">Price($)</label>
+                        <div class="col-sm-10">
+                            <input required name="price" type="number" class="form-control" id="input-price"
+                                placeholder="1000..." />
+                        </div>
+                    </div>
+
+                    {# Input category #}
+                    <div class="form-group row">
+                        <label for="input-category" class="col-sm-2 col-form-label">Category</label>
+                        <div class="col-sm-10">
+                            <input required name="category" type="text" list="categories"
+                                class="custom-select form-control" id="input-category"
+                                placeholder="Select or type new category...">
+
+                            {# todo: query from database #}
+                            <datalist id="categories">
+                                {% for category in categories %}
+                                <option value="{{ category.name }}">
+                                    {% endfor %}
+                            </datalist>
+                            </select>
+                        </div>
+                    </div>
+
+                    {# Input image #}
+                    <div class="form-group row">
+                        <label for="input-image" class="col-sm-2 col-form-label">Image</label>
+                        <div class="col-sm-10 align-middle d-flex align-items-center">
+                            <input required accept="image/*" name="image" type="file" class="" id="input-image">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Add product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

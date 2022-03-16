@@ -1,0 +1,31 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="col" style="width: 1rem;">Id</th>
+            <th class="col w-25">Name</th>
+            <th class="col w-25">Price</th>
+            <th class="col w-25">Category</th>
+            <th class="col" style="width: 3rem;">Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if products is not empty %}
+        {% for product in products %}
+        <tr data-toggle="modal" data-target="#editProductModal" style="cursor:pointer" data-id="{{product.id}}"
+            data-name="{{product.name}}" data-price="{{product.price}}" data-category="{{product.category}}"
+            data-image="assets/images/products/{{product.image}}">
+            <td class="col" style="width: 1rem;">{{ product.id }}</td>
+            <td class="col w-25">{{ product.name }}</td>
+            <td class="col w-25">{{ product.price }}</td>
+            <td class="col w-25">{{ product.category }}</td>
+            <td class="col" style="width: 3rem;">
+                <img src="assets/images/products/{{product.image}}" alt="{{ product.name }}"
+                    class="img-fluid rounded" />
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h5>No products to show here</h5>
+        {% endif %}
+    </tbody>
+</table>

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %} {% block body %}
+
+{% include "Home/_header.html" %}
+
+{% include "Home/_tableProducts.html" %}
+
+{% include "Home/_newProductModal.html" %}
+
+{% include "Home/_editProductModal.html" %}
+{{ pagination | raw }}
+
+{% endblock %}
