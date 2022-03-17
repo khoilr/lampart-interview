@@ -4,6 +4,15 @@ Những hình ảnh của sản phẩm có thể không trùng khớp với tên
 
 Project này đã được deploy trên Heroku. <https://lampart-interview-khoi.herokuapp.com/>
 
+Các chức năng của project này:
+
+- Xem
+- Thêm
+- Sửa
+- Xóa
+- Tìm kiếm
+- Phân trang, mỗi trang sẽ có 10 bản ghi
+
 ## Requirements
 
 - PHP 7.2+
