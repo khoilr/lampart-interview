@@ -59,6 +59,42 @@ class Product extends \Core\Model
         } else die("Error: " . $statement->error);
     }
 
+    public static function getAllBySearch($q)
+    {
+        $db = static::getDB();
+        $like = "%$q%";
+        $statement = $db->prepare('SELECT * FROM products WHERE name LIKE ? or category LIKE ?');
+        $statement->bind_param('ss', $like, $like);
+        if ($statement->execute()) {
+            $result = $statement->get_result();
+            $products = [];
+            while ($row = $result->fetch_assoc()) {
+                $products[] = new Product($row['name'], $row['category'], $row['price'], $row['image'], $row['id']);
+            }
+            return $products;
+        } else die("Error: " . $statement->error);
+    }
+
+    public static function getBySearchPagination($q, $page = 1, $perPage = 10)
+    {
+        $db = static::getDB();
+
+        $offset = ($page - 1) * $perPage;
+
+        $like ="%$q%";
+
+        $statement = $db->prepare('SELECT * FROM products WHERE name LIKE ? or category LIKE ? LIMIT ?, ?');
+        $statement->bind_param('ssii', $like, $like, $offset, $perPage);
+
+        if ($statement->execute()) {
+            $result = $statement->get_result();
+            $products = [];
+            while ($row = $result->fetch_assoc()) {
+                $products[] = new Product($row['name'], $row['category'],  $row['price'], $row['image'], $row['id']);
+            }
+            return $products;
+        } else die("Error: " . $statement->error);
+    }
     /**
      * Get a product by id
      *

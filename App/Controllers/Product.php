@@ -98,7 +98,6 @@ class Product extends \Core\Controller
 
         // create product object
         $product = new ProductModel($name, $categoryId, $price, id: $id);
-        print_r($product);
         
         //back home when add success, otherwise go to error page
         ProductModel::update($product) ? header('Location: /') : $this->errorAction("Got some error, we working on it. Please try again later.");

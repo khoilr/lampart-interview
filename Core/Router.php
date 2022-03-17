@@ -111,9 +111,8 @@ class Router
     {
         $url = $this->removeQueryStringVariables($url);
 
-        if (empty($url) || $url[0] != '/') {
+        if (empty($url) || $url[0] != '/')
             $url = '/' . $url;
-        }
 
         if ($this->match($url)) {
             $controller = $this->params['controller'];
@@ -125,7 +124,6 @@ class Router
 
                 $action = $this->params['action'];
                 $action = $this->convertToCamelCase($action);
-
                 if (preg_match('/action$/i', $action) == 0) {
                     $controller_object->$action();
                 } else {
@@ -191,7 +189,7 @@ class Router
     protected function removeQueryStringVariables($url)
     {
         if ($url != '') {
-            $parts = explode('&', $url, 2);
+            $parts = explode('?', $url, 2);
 
             if (strpos($parts[0], '=') === false) {
                 $url = $parts[0];
